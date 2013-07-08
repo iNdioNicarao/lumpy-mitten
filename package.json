@@ -8,5 +8,13 @@
   "license": "MIT",
   "devDependencies": {
     "cucumber": "~0.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lotyrin/lumpy-mitten.git"
+  },
+  "author": "Gregory Perry",
+  "bugs": {
+    "url": "https://github.com/lotyrin/lumpy-mitten/issues"
   }
 }
