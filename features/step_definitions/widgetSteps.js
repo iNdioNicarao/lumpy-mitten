@@ -1,5 +1,7 @@
 var request = require('request');
 var should = require('should');
+var lastResponse = null;
+var lastBody = null;
 
 var widgetSteps = function() {
   this.World = require('../support/world').World;
@@ -13,13 +15,15 @@ var widgetSteps = function() {
     var url = 'http://localhost:' + port + '/api/widgets';
     request(url, function(error, response, body){
       response.should.have.status(200);
+      lastResponse = response;
+      lastBody = body;
       callback();
     });
   });
 
   this.Then(/^I should recieve an empty list$/, function(callback) {
-    // express the regexp above with the code you wish you had
-    callback.pending();
+    JSON.parse(lastBody).should.be.empty;
+    callback();
   });
 
   this.When(/^I create a widget$/, function(callback) {
