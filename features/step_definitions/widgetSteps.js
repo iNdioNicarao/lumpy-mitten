@@ -11,9 +11,7 @@ var widgetSteps = function() {
   });
 
   this.When(/^I retrieve the list of widgets$/, function(callback) {
-    var port = process.env.PORT || 3000;
-    var url = 'http://localhost:' + port + '/api/widgets';
-    request(url, function(error, response, body){
+    request(this.baseUrl + '/api/widgets', function(error, response, body){
       response.should.have.status(200);
       lastResponse = response;
       lastBody = body;
@@ -27,10 +25,8 @@ var widgetSteps = function() {
   });
 
   this.When(/^I create a widget$/, function(callback) {
-    var port = process.env.PORT || 3000;
-    var url = 'http://localhost:' + port + '/api/widgets';
     data = JSON.stringify({});
-    request.post({url: url, body: data}, function(error, response, body){
+    request.post({url: this.baseUrl + '/api/widgets', body: data}, function(error, response, body){
       response.should.have.status(201);
       lastResponse = response;
       lastBody = body;
