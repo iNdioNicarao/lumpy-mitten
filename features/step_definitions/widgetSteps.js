@@ -1,7 +1,8 @@
 var widgetSteps = function() {
+  this.World = require('../support/world').World;
+
   this.Given(/^there are no widgets$/, function(callback) {
-    // express the regexp above with the code you wish you had
-    callback.pending();
+    this.db.query('TRUNCATE widgets', callback);
   });
 
   this.When(/^I retrieve the list of widgets$/, function(callback) {
