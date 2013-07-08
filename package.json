@@ -5,5 +5,8 @@
   "scripts": {
     "test": "cucumber.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "cucumber": "~0.3.0"
+  }
 }
