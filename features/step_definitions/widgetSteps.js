@@ -2,6 +2,7 @@ var request = require('request');
 var should = require('should');
 var lastResponse = null;
 var lastBody = null;
+var createdUUID = null;
 
 var widgetSteps = function() {
   this.World = require('../support/world').World;
@@ -30,13 +31,14 @@ var widgetSteps = function() {
       response.should.have.status(201);
       lastResponse = response;
       lastBody = body;
+      createdUUID = JSON.parse(body).uuid;
       callback();
     });
   });
 
   this.Then(/^I should see the widget I created$/, function(callback) {
-    // express the regexp above with the code you wish you had
-    callback.pending();
+    JSON.parse(lastBody).should.include(createdUUID);
+    callback();
   });
 
   this.Given(/^there is a widget$/, function(callback) {
