@@ -1,3 +1,6 @@
+var request = require('request');
+var should = require('should');
+
 var widgetSteps = function() {
   this.World = require('../support/world').World;
 
@@ -6,8 +9,12 @@ var widgetSteps = function() {
   });
 
   this.When(/^I retrieve the list of widgets$/, function(callback) {
-    // express the regexp above with the code you wish you had
-    callback.pending();
+    var port = process.env.PORT || 3000;
+    var url = 'http://localhost:' + port + '/api/widgets';
+    request(url, function(error, response, body){
+      response.should.have.status(200);
+      callback();
+    });
   });
 
   this.Then(/^I should recieve an empty list$/, function(callback) {
