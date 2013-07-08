@@ -27,8 +27,15 @@ var widgetSteps = function() {
   });
 
   this.When(/^I create a widget$/, function(callback) {
-    // express the regexp above with the code you wish you had
-    callback.pending();
+    var port = process.env.PORT || 3000;
+    var url = 'http://localhost:' + port + '/api/widgets';
+    data = JSON.stringify({});
+    request.post({url: url, body: data}, function(error, response, body){
+      response.should.have.status(201);
+      lastResponse = response;
+      lastBody = body;
+      callback();
+    });
   });
 
   this.Then(/^I should see the widget I created$/, function(callback) {
