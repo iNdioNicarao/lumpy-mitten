@@ -1,0 +1,9 @@
+{
+  "name": "lumpy-mitten",
+  "version": "0.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "cucumber.js"
+  },
+  "license": "MIT"
+}
